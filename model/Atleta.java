@@ -1,3 +1,5 @@
+package model;
+
 public abstract class Atleta {
     protected String nome;
     protected double[] resultados;

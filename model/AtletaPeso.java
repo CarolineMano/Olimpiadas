@@ -1,3 +1,5 @@
+package model;
+
 public class AtletaPeso extends Atleta {
     
     public AtletaPeso() {

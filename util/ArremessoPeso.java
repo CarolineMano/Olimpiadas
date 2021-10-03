@@ -1,4 +1,8 @@
+package util;
+
 import java.util.Arrays;
+import model.AtletaPeso;
+
 
 public class ArremessoPeso {
 
@@ -14,8 +18,6 @@ public class ArremessoPeso {
     }
 
     public static String definirVencedor(AtletaPeso atleta1, AtletaPeso atleta2) {
-        Arrays.sort(atleta1.getResultados());
-        Arrays.sort(atleta2.getResultados());
         if(atleta1.getResultados()[2] > atleta2.getResultados()[2]) {
             return ("O vencedor foi o atleta " + atleta1.getNome() + ", com um arremesso de " + atleta1.getResultados()[2] + " metros\n"); 
         }
@@ -32,10 +34,6 @@ public class ArremessoPeso {
                 atleta2.getResultados()[1] + " metros\n"); 
             }
         }
-    }
-
-    public static String prepararArremesso(AtletaPeso atleta) {
-        return ("O atleta " + atleta.getNome() + " fez seu " + (atleta.getIndiceResultado() + 1) + "º arremesso...");
     }
 
 }

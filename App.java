@@ -1,9 +1,14 @@
 import java.util.Scanner;
+import model.*;
+import util.*;
+
 
 public class App {
     public static void main(String[] args) {
-        AtletaPeso atleta1 = new AtletaPeso();
-        AtletaPeso atleta2 = new AtletaPeso();
+        AtletaPeso atletaPeso1 = new AtletaPeso();
+        AtletaPeso atletaPeso2 = new AtletaPeso();
+        AtletaGinastica atletaGinastica1 = new AtletaGinastica();
+        AtletaGinastica atletaGinastica2 = new AtletaGinastica();
         boolean fimDePrograma = true;
         Scanner entrada = new Scanner(System.in);
         int opcao = 0;
@@ -21,17 +26,24 @@ public class App {
 
             switch (opcao) {
                 case 1:
-                    System.out.print("O primeiro atleta a competir é: ");
-                    atleta1.setNome(entrada.nextLine());
-                    System.out.print("O segundo atleta a competir é: ");
-                    atleta2.setNome(entrada.nextLine());
+                    System.out.println("\n***ARREMESSO DE PESO***\n");
+                    inserirNomeAtletas(atletaPeso1, atletaPeso2, entrada);
 
-                    fazerTresArremessos(atleta1, entrada);
-                    fazerTresArremessos(atleta2, entrada);
+                    fazerTresArremessos(atletaPeso1, entrada);
+                    fazerTresArremessos(atletaPeso2, entrada);
             
-                    System.out.println(ArremessoPeso.definirVencedor(atleta1, atleta2));
+                    System.out.println(ArremessoPeso.definirVencedor(atletaPeso1, atletaPeso2));
                     break;
-            
+                case 2:
+                    System.out.println("\n***GINÁSTICA ARTÍSTICA***\n");
+                    inserirNomeAtletas(atletaGinastica1, atletaGinastica2, entrada);
+
+                    divulgarCincoNotas(atletaGinastica1, entrada);
+                    divulgarCincoNotas(atletaGinastica2, entrada);
+
+                    System.out.println(GinasticaArtistica.definirVencedor(atletaGinastica1, atletaGinastica2));
+
+                    break;
                 case 3:
                     System.out.println("Obrigado por participar dos Jogos Olímpicos. Até a próxima!");
                     fimDePrograma = false;
@@ -45,6 +57,13 @@ public class App {
 
     }
 
+    public static void inserirNomeAtletas(Atleta atleta1, Atleta atleta2, Scanner entrada) {
+        System.out.print("O primeiro atleta a competir é: ");
+        atleta1.setNome(entrada.nextLine());
+        System.out.print("O segundo atleta a competir é: ");
+        atleta2.setNome(entrada.nextLine());
+    }
+    
     public static void fazerTresArremessos(AtletaPeso atleta, Scanner entrada) {
         System.out.println("O atleta " + atleta.getNome() + " irá jogar...");
         for (int i = 0; i < atleta.getResultados().length; i++) {
@@ -53,4 +72,14 @@ public class App {
             System.out.println(ArremessoPeso.fazerArremesso(atleta, arremesso));
         }
     }
+
+    public static void divulgarCincoNotas(AtletaGinastica atleta, Scanner entrada) {
+        System.out.println("\nO atleta " + atleta.getNome() + " está se apresentando...");
+        for (int i = 0; i < atleta.getResultados().length; i++) {
+            System.out.print((atleta.getIndiceResultado() + 1) + "ª nota: ");
+            double nota = Ferramenta.converterStringParaDouble(entrada);
+            System.out.println(GinasticaArtistica.fazerApresentacao(atleta, nota));
+        }
+    }
+
 }
