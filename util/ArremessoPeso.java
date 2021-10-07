@@ -1,3 +1,5 @@
+/*Classe que implementa as decisões, regras e mensagens do arremesso de peso*/
+
 package util;
 
 import java.util.Arrays;
@@ -6,6 +8,7 @@ import model.AtletaPeso;
 
 public class ArremessoPeso {
 
+    //Método estático para fazer um único arremesso de um atleta da modalidade e decidir, após 3 arremessos, a melhor marca do atleta
     public static String fazerArremesso(AtletaPeso atleta, double valorArremesso) {
         String saida = "O atleta " + atleta.getNome() + " faz seu " + (atleta.getIndiceResultado() + 1) + "º arremesso, " + valorArremesso + " metros\n";
         atleta.setResultados(valorArremesso);
@@ -17,6 +20,7 @@ public class ArremessoPeso {
         return saida;
     }
 
+    //Método estático para definir, dentre dois atletas de peso, o vencedor
     public static String definirVencedor(AtletaPeso atleta1, AtletaPeso atleta2) {
         if(atleta1.getResultados()[2] > atleta2.getResultados()[2]) {
             return ("O vencedor foi o atleta " + atleta1.getNome() + ", com um arremesso de " + atleta1.getResultados()[2] + " metros\n"); 

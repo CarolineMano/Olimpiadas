@@ -1,14 +1,21 @@
+/*Classe mãe, abstrata, Atleta
+para ser utilizada pelas classes AtletaGinastica
+e AtletaPeso*/
+
 package model;
 
 public abstract class Atleta {
+    //Propriedades
     protected String nome;
     protected double[] resultados;
     protected int indiceResultado;
 
+    //Construtor
     public Atleta() {
         indiceResultado = 0;
     }
 
+    //Getters e setters
     public void setNome(String nome) {
         this.nome = nome;
     }

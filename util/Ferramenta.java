@@ -1,3 +1,6 @@
+/*Classe com ferramentas para lidar com exceções que podem ser causadas
+na entrada do usuário*/
+
 package util;
 
 import java.util.Scanner;
@@ -5,6 +8,7 @@ import java.util.Scanner;
 
 public class Ferramenta {
     
+    //Método estático para converter a entrada em um int, lidando com erros
     public static int converterStringParaInt (Scanner entrada) {
         boolean continueLoop = true;
         String opcaoComoString;
@@ -22,6 +26,7 @@ public class Ferramenta {
         return opcaoComoInt;
     }
 
+    //Método estático para converter a entrada em um double, lidando com erros
     public static double converterStringParaDouble (Scanner entrada) {
         boolean continueLoop = true;
         String opcaoComoString;
