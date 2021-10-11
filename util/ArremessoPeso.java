@@ -2,11 +2,24 @@
 
 package util;
 
+import java.util.Arrays;
 import java.util.Scanner;
 import model.AtletaPeso;
 
 
 public class ArremessoPeso extends Modalidade{
+
+    //Método estático para fazer um único arremesso de um atleta da modalidade e decidir, após 3 arremessos, a melhor marca do atleta
+    public static String fazerArremesso(AtletaPeso atleta, double valorArremesso) {
+        String saida = "O atleta " + atleta.getNome() + " faz seu " + (atleta.getIndiceResultado() + 1) + "º arremesso, " + valorArremesso + " metros\n";
+        atleta.setResultados(valorArremesso);
+        if(atleta.getIndiceResultado() == 3) {
+            Arrays.sort(atleta.getResultados());
+            saida += "O atleta " + atleta.getNome() + " teve como melhor arremesso a distância de " + atleta.getResultados()[2] + " metros\n";
+            atleta.setIndiceResultado(0);
+        }
+        return saida;
+    }
 
     //Método estático para definir, dentre dois atletas de peso, o vencedor
     public static String definirVencedor(AtletaPeso atleta1, AtletaPeso atleta2) {
@@ -28,13 +41,13 @@ public class ArremessoPeso extends Modalidade{
         }
     }
 
-    //Método para um atleta de peso realizar 3 arremessos
+    //Método estático para um atleta de peso realizar 3 arremessos
     public static void fazerTresArremessos(AtletaPeso atleta, Scanner entrada) {
         System.out.println("O atleta " + atleta.getNome() + " irá jogar...");
         for (int i = 0; i < atleta.getResultados().length; i++) {
             System.out.print((atleta.getIndiceResultado() + 1) + "º arremesso: ");
             double arremesso = Ferramenta.converterStringParaDouble(entrada);
-            System.out.println(atleta.fazerArremesso(arremesso));
+            System.out.println(ArremessoPeso.fazerArremesso(atleta, arremesso));
         }
     }
 

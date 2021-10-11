@@ -7,7 +7,6 @@ import util.*;
 
 public class App {
     public static void main(String[] args) {
-
         //Declaração de variáveis locais
         AtletaPeso atletaPeso1 = new AtletaPeso();
         AtletaPeso atletaPeso2 = new AtletaPeso();
@@ -34,7 +33,7 @@ public class App {
                 case 1:
                     //Implementação do arremesso de peso
                     System.out.println("\n***ARREMESSO DE PESO***\n");
-                    ArremessoPeso.inserirNomeAtletas(atletaPeso1, atletaPeso2);
+                    ArremessoPeso.inserirNomeAtletas(atletaPeso1, atletaPeso2, entrada);
 
                     ArremessoPeso.fazerTresArremessos(atletaPeso1, entrada);
                     ArremessoPeso.fazerTresArremessos(atletaPeso2, entrada);
@@ -44,7 +43,7 @@ public class App {
                 case 2:
                     //Implementação da ginástica artística
                     System.out.println("\n***GINÁSTICA ARTÍSTICA***\n");
-                    GinasticaArtistica.inserirNomeAtletas(atletaGinastica1, atletaGinastica2);
+                    GinasticaArtistica.inserirNomeAtletas(atletaGinastica1, atletaGinastica2, entrada);
 
                     GinasticaArtistica.divulgarCincoNotas(atletaGinastica1, entrada);
                     GinasticaArtistica.divulgarCincoNotas(atletaGinastica2, entrada);
