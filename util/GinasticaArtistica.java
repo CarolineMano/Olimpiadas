@@ -7,8 +7,26 @@ import model.AtletaGinastica;
 
 public class GinasticaArtistica extends Modalidade{
     
-    //Método estático para que a apresentação seja julgada por um único juiz e dar a avaliação final após 5 notas
-    public static String fazerApresentacao(AtletaGinastica atleta, double notaJurado) {
+    //Vetor para inserir os atletas de ginástica artística
+    private AtletaGinastica[] atletas;
+
+    //Construtor
+    public GinasticaArtistica() {
+        atletas = new AtletaGinastica[2];
+        atletas[0] = new AtletaGinastica();
+        atletas[1] = new AtletaGinastica();
+    }
+
+    //Definição do método abstrato herdado da classe Modalidade para inserir nomes dos atletas
+    public void inserirNomeAtletas(Scanner entrada) {
+        System.out.print("O primeiro atleta a competir é: ");
+        atletas[0].setNome(entrada.nextLine());
+        System.out.print("O segundo atleta a competir é: ");
+        atletas[1].setNome(entrada.nextLine());
+    }
+
+    //Método para que a apresentação seja julgada por um único juiz e dar a avaliação final após 5 notas
+    private String fazerApresentacao(AtletaGinastica atleta, double notaJurado) {
         String saida = "A " + (atleta.getIndiceResultado() + 1) + "ª nota do atleta " + atleta.getNome() + " é: " + notaJurado;
         atleta.setResultados(notaJurado);
         if(atleta.getIndiceResultado() == 5) {
@@ -23,21 +41,24 @@ public class GinasticaArtistica extends Modalidade{
         return saida;
     }
 
-    //Método estático para definir, dentre dois atletas de ginástica, o vencedor
-    public static String definirVencedor(AtletaGinastica atleta1, AtletaGinastica atleta2) {
-        if(atleta1.getSomatorioFinalNotas() > atleta2.getSomatorioFinalNotas()){
-            return ("\nO vencedor foi o atleta " + atleta1.getNome() + ", com uma nota final de " + atleta1.getSomatorioFinalNotas());
+    //Definição do método abstrato herdado da classe Modalidade para definir, dentre dois atletas de ginástica, o vencedor
+    public String definirVencedor() {
+        if(atletas[0].getSomatorioFinalNotas() > atletas[1].getSomatorioFinalNotas()){
+            return ("\nO vencedor foi o atleta " + atletas[0].getNome() + ", com uma nota final de " + atletas[0].getSomatorioFinalNotas());
         }
-            return ("\nO vencedor foi o atleta " + atleta2.getNome() + ", com uma nota final de " + atleta2.getSomatorioFinalNotas());        
+            return ("\nO vencedor foi o atleta " + atletas[1].getNome() + ", com uma nota final de " + atletas[1].getSomatorioFinalNotas());        
     }
 
-    //Método estático para um atleta de ginástica ter 5 notas divulgadas
-    public static void divulgarCincoNotas(AtletaGinastica atleta, Scanner entrada) {
-        System.out.println("\nO atleta " + atleta.getNome() + " está se apresentando...");
-        for (int i = 0; i < atleta.getResultados().length; i++) {
-            System.out.print((atleta.getIndiceResultado() + 1) + "ª nota: ");
-            double nota = Ferramenta.converterStringParaDouble(entrada);
-            System.out.println(GinasticaArtistica.fazerApresentacao(atleta, nota));
-        }
+    //Método para os atletas de ginástica terem 5 notas divulgadas, com auxílio do método privado fazerApresentacao
+    public void divulgarCincoNotas(Scanner entrada) {
+        for (AtletaGinastica atletaGinastica : atletas) {
+            System.out.println("\nO atleta " + atletaGinastica.getNome() + " está se apresentando...");
+            for (int i = 0; i < atletaGinastica.getResultados().length; i++) {
+                System.out.print((atletaGinastica.getIndiceResultado() + 1) + "ª nota: ");
+                double nota = Ferramenta.converterStringParaDouble(entrada);
+                System.out.println(fazerApresentacao(atletaGinastica, nota));
+            }
+        }    
     }
+
 }
